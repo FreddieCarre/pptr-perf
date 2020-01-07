@@ -1,0 +1,19 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: PUPPETEER
+    orgId: 1
+
+datasources:
+- name: PUPPETEER
+  type: influxdb
+  typeLogoUrl: public/app/plugins/datasource/influxdb/img/influxdb_logo.svg
+  access: proxy
+  url: http://influxdb:8086
+  user: root
+  database: puppeteer
+  basicAuth: false
+  isDefault: true
+  jsonData:
+    httpMode:GET
+  readOnly: false
