@@ -54,10 +54,11 @@ export const sendData = async (client: CDPSession, title: string) => {
   const data = await getMetrics(client, 'FirstMeaningfulPaint', 'DomContentLoaded');
 
   INFO(data);
-
-  await influx().writeMeasurement(title, [{ 
-    tags: { name: title },
-    fields: data 
-  }]
-  );
+  
+  Object.entries(data).forEach(async ([name, value]) => {
+    await influx().writeMeasurement(title, [{ 
+      tags: { name },
+      fields: { value } 
+    }]);
+  });
 };

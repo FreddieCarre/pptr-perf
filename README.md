@@ -9,6 +9,8 @@ Requirements
 * [Node](https://nodejs.org/en/)
 * [Yarn](https://yarnpkg.com/getting-started/install) - npm install -g yarn
 * [Make](https://www.gnu.org/software/make/)
+* [Docker](https://www.docker.com/)
+* Unix environment - e.g. [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
 Setup
 ---
@@ -16,21 +18,18 @@ Setup
 * Install Node dependencies
 `make install`
 
-* Launch the Grafana and InfluxDB docker containers.
+* Launch the Grafana, this also conifgures the Grafana instance and InfluxDB docker containers.
 `make up`
 
-* Configure Grafana to read from Influx
+* Login to Grafana 
     Navigate to `localhost:3000`
     Sign in with `admin` `admin`
-    Click create a data source - InfluxDB
-    Add the details for the InfluxDB container
-      URL: `http://influxdb:8086`
-      Database: `puppeteer`
-      User: `root`
-      Password: `root`
 
+* Run tests
+`make test-local`
 
 # Example metrics
+```
 {
   metrics: [
     { name: 'Timestamp', value: 15564.960674 },
@@ -68,3 +67,4 @@ Setup
     { name: 'NavigationStart', value: 15563.583237 }
   ]
 }
+```
